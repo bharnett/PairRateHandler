@@ -41,3 +41,9 @@ This extends the 'Pair' class with support for rates and amounts around a FX tra
 - Rate (double)
 
 ### Constructors
+On takes two currency codes (string) and two respective amounts for those currency codes (double).  This will populate the Pair subclass and also the rate using the 'GetRate' function.  The other creates an empty PairRate taking a singular 'Pair' class.
+
+### Functions
+- GetRate: This returns a rate depending on the Amt1 and Amt2 properties and bases the display of the rate on the currency ranks.
+- GetCounterAmt: Accepts a double 'givenAmt' argument and utilizes the 'FindRate' function to get a rate and counter amount for a FX transaction.  Requires the 'RateTools.PairRateList' to be popualted.
+- FindRate:  Utilizes the 'RateTools.PairRateList' to find a rate for a given pair or, optionally, between two specified pairs via the optional argument of 'specPair1' and 'specPair2'.  By specifying the pairs, it will create a rate by crossing the two specified.  EX) EURUSD & USDJPY to get EURJPY.  Withouth specifying currencies it will find the first available pairs in the list that match or if a native rate is available it will get that from the list.  
