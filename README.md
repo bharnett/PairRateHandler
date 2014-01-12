@@ -47,3 +47,14 @@ On takes two currency codes (string) and two respective amounts for those curren
 - GetRate: This returns a rate depending on the Amt1 and Amt2 properties and bases the display of the rate on the currency ranks.
 - GetCounterAmt: Accepts a double 'givenAmt' argument and utilizes the 'FindRate' function to get a rate and counter amount for a FX transaction.  Requires the 'RateTools.PairRateList' to be popualted.
 - FindRate:  Utilizes the 'RateTools.PairRateList' to find a rate for a given pair or, optionally, between two specified pairs via the optional argument of 'specPair1' and 'specPair2'.  By specifying the pairs, it will create a rate by crossing the two specified.  EX) EURUSD & USDJPY to get EURJPY.  Withouth specifying currencies it will find the first available pairs in the list that match or if a native rate is available it will get that from the list.  
+
+
+##RateMaker Class
+Utilizing two Pair classes and two associated rates, this returns a new PairRate class with a new Pair string and rate.  Requires PairRateList to be populated. It has four properties
+- Pair1 (Pair)
+- Pair2 (Pair)
+- Rate1 (double)
+- Rate2 (double)
+
+### Functions
+- CalcNewRate:  Utilizes all the prooperties to calculate a rate based on rates fround in the 'RateTools.PairRateList'.  If it cannot find a common currency between the two provided pairs, it will throw an InvalidOperationException.  Returns a PairRate class. 
