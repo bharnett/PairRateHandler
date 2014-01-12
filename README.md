@@ -5,7 +5,7 @@ I created this library for use in .NET programs to handle Foreign Exchange pairs
 
 Some common issues in FX revolve around using the correct convention of a pair, getting the rate in the correct convention
 and being able to create rates between cross currencies.  I wanted to create a library that could support all those annoying thing
-and then some for my own personal use.  
+and then some for my own personal use.  I tried to write this up to be a clear as I can.  However, there are plenty of comments in the code for each class and the associated methods that I hope will help.  Furthermoe, feel free to let me know about any issues with the code and I'll fix them.  This is simple, but hugely useful if you are dealing with FX transactions.  
 
 ##NOTES - All currency codes should be the standard three digit codes, like EUR or USD.  
 
@@ -61,11 +61,15 @@ Utilizing two Pair classes and two associated rates, this returns a new PairRate
 
 
 ##RateTools Class
-Contains many static functions for calculation or providing functionality to the other classes.  
+Contains many static functions for calculation or providing functionality to the other classes.  There are two main properties:
+- Rankings: A static list of string of all currency codes.  This is based on US perspective and is read only. 
+- PairRateList: A dictionary of the Pair class and a double for storing pairs and associated rates.
 
 ### Functions
-- Rankings: Returns a list of strings that are the currency codes.  Their index in this list is their rank.
 - GetRate: Returns a double that is the rate between two currencies and two amounts.
 - GetRate: Returns a PairRate based on an input of two Pair classes.
-- RateGetter: 
+- RateGetter: Returns a PairRate based ont two Pair inputs.  Requires the PairRateList to be populated as the cross rate needs to be calculated off a source.
+- GetPair: Returns a string of the correct currency pair string taking two currency codes as an input.  Also supports an optional NoSlash boolean to return the pair without a '/' between the currencies.
+- PopulatePairRateList: Takes an IEnumberable of string called pairs and a a IEnumerable of double called rates.  This populates the pair rate list by creating Pair classes for each passed in value.  Note: pairs and rates must be the same length.  
+- GetPairCounterRate: Returns a PairRate and takes a string for the given currency code, a double for the given amount, and a string for the counter currency.  The pair rate will have the and the counter amount populated.  
 
