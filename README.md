@@ -58,3 +58,14 @@ Utilizing two Pair classes and two associated rates, this returns a new PairRate
 
 ### Functions
 - CalcNewRate:  Utilizes all the prooperties to calculate a rate based on rates fround in the 'RateTools.PairRateList'.  If it cannot find a common currency between the two provided pairs, it will throw an InvalidOperationException.  Returns a PairRate class. 
+
+
+##RateTools Class
+Contains many static functions for calculation or providing functionality to the other classes.  
+
+### Functions
+- Rankings: Returns a list of strings that are the currency codes.  Their index in this list is their rank.
+- GetRate: Returns a double that is the rate between two currencies and two amounts.
+- GetRate: Returns a PairRate based on an input of two Pair classes.
+- RateGetter: 
+
