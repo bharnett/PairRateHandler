@@ -54,7 +54,7 @@ namespace PairRateHandler
             {
                 this.Rate = 0;
             }
-            else if (CCY1Rank > CCY2Rank)
+            else if (CCY1Rank < CCY2Rank)
             {
                 this.Rate = (Amt1 / Amt2);
             }
