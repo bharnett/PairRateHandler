@@ -202,6 +202,40 @@ namespace PairRateHandler
 
             return RateGetter(p1, p2);
         }
+        
+        /// <summary>
+        /// Returns a PairRate object by searching the PairRateList and trying to find a match.  Returns null if no matching cross pairs found.
+        /// </summary>
+        /// <param name="pairString">A string the represent the currency pair to create a synthetic rate for.</param>
+        /// <returns></returns>
+        public static PairRate GetRate(string pairString)
+        {
+            Pair requestedPair = new Pair(pairString);
+            PairRate newPair = new PairRate();
+
+            //get all eligble currency pairs
+            var ccy1PairRates = RateTools.PairRateList.Where(r => r.Key.CCY1 == requestedPair.CCY1 || r.Key.CCY2 == requestedPair.CCY1);
+            var ccy2PairRates = RateTools.PairRateList.Where(r => r.Key.CCY1 == requestedPair.CCY2 || r.Key.CCY2 == requestedPair.CCY2);
+
+
+            foreach (var ccy1Pair in ccy1PairRates)
+            {
+                foreach (var ccy2Pair in ccy2PairRates)
+                {
+                    try
+                    {
+                        newPair = RateGetter(ccy1Pair.Key, ccy2Pair.Key);
+                    }
+                    catch (Exception)
+                    {
+                        newPair = null;
+                    }
+
+                }
+            }
+
+            return newPair;
+        }
 
         /// <summary>
         /// Returns a PairRate object with rate populated between the two provided Pair objects.  Requires PairRateList to be populated.  
