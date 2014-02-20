@@ -44,6 +44,10 @@ namespace PairRateHandler
             GetRanks();
             GetPair();
         }
+        
+        public PairRate()
+        {
+        }
 
         /// <summary>
         /// Returns a rate depending on the PairRates Amt1 and Amd2 properties and currency ranks.  
